@@ -85,3 +85,29 @@ function searchMovies() {
     const searchTerm = document.getElementById("searchInput").value;
     loadMovies(searchTerm);
 }
+function filtrarPorAnio() {
+  const year = document.getElementById("filterYear").value;
+  const apiKey = "df78b1d0";
+  const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=Guardians&type=movie&y=${year}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const filteredMovies = document.getElementById("filteredMovies");
+      filteredMovies.innerHTML = "";
+      if (data.Search) {
+        data.Search.forEach(movie => {
+          const div = document.createElement("div");
+          div.classList.add("movie");
+          div.innerHTML = `
+            <img src="${movie.Poster}" alt="${movie.Title}">
+            <h3>${movie.Title}</h3>
+            <button onclick="agregarAFavoritos('${movie.imdbID}')">Agregar a Favoritos</button>
+          `;
+          filteredMovies.appendChild(div);
+        });
+      } else {
+        filteredMovies.innerHTML = "<p>No se encontraron resultados para ese año.</p>";
+      }
+    });
+}
