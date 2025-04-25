@@ -1,37 +1,64 @@
-<div id="tabs">
-  <button class="tablink active" onclick="openTab(event, 'menu')">Menú</button>
-  <button class="tablink" onclick="openTab(event, 'favoritos')">Favoritos</button>
-  <button class="tablink" onclick="openTab(event, 'informacion')">Informativa</button>
-  <button class="tablink" onclick="openTab(event, 'usuario')">Usuario</button>
-  <button class="tablink" onclick="openTab(event, 'buscar')">Buscar</button>
-  <button class="tablink" onclick="openTab(event, 'filtros')">Filtros</button>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Películas OMDb</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <div id="tabs">
+    <button class="tablink active" onclick="openTab(event, 'menu')">Menú</button>
+    <button class="tablink" onclick="openTab(event, 'favoritos')">Favoritos</button>
+    <button class="tablink" onclick="openTab(event, 'informacion')">Informativa</button>
+    <button class="tablink" onclick="openTab(event, 'usuario')">Usuario</button>
+    <button class="tablink" onclick="openTab(event, 'buscar')">Buscar</button>
+    <button class="tablink" onclick="openTab(event, 'filtros')">Filtros</button>
+  </div>
 
-<div id="menu" class="tabcontent active">
-  <h2>Películas del Menú</h2>
-  <div id="movieList"></div>
-</div>
+  <div id="menu" class="tabcontent active">
+    <h2>Películas del Menú</h2>
+    <div id="movieList"></div>
+  </div>
 
-<div id="favoritos" class="tabcontent">
-  <h2>Favoritos</h2>
-  <div id="favoritesList"></div>
-</div>
+  <div id="favoritos" class="tabcontent">
+    <h2>Favoritos</h2>
+    <div id="favoritesList"></div>
+  </div>
 
-<div id="informacion" class="tabcontent">
-  <!-- Tu contenido informativo -->
-</div>
+  <div id="informacion" class="tabcontent">
+    <h2>API: OMDb API</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Marvel_Logo.svg" alt="Marvel" width="200" />
+    <p>OMDb (Open Movie Database) es una API para consultar datos de películas, series y actores, ideal para proyectos como este.</p>
+    <p><strong>Versión:</strong> V.1.0.0</p>
+    <p><strong>GitHub:</strong> @tuUsuarioGitHub</p>
+    <p><strong>Estudiante:</strong> Tu Nombre Completo</p>
+  </div>
 
-<div id="usuario" class="tabcontent">
-  <!-- Formulario de nombre y edad -->
-</div>
+  <div id="usuario" class="tabcontent">
+    <h2>Formulario de Usuario</h2>
+    <form>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Escribe tu nombre" />
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" placeholder="Tu edad" />
+    </form>
+  </div>
 
-<div id="buscar" class="tabcontent">
-  <!-- Buscador -->
-</div>
+  <div id="buscar" class="tabcontent">
+    <h2>Buscar Películas</h2>
+    <input type="text" id="searchInput" placeholder="Buscar película" />
+    <button onclick="buscarPeliculas()">Buscar</button>
+    <div id="searchResults"></div>
+  </div>
 
-<div id="filtros" class="tabcontent">
-  <h2>Filtrar por Año</h2>
-  <input type="number" id="filterYear" placeholder="Ej. 2017">
-  <button onclick="filtrarPorAnio()">Filtrar</button>
-  <div id="filteredMovies"></div>
-</div>
+  <div id="filtros" class="tabcontent">
+    <h2>Filtrar por Año</h2>
+    <input type="number" id="filterYear" placeholder="Ej. 2017" />
+    <button onclick="filtrarPorAnio()">Filtrar</button>
+    <div id="filteredMovies"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
