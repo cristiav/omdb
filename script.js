@@ -47,6 +47,7 @@ function searchMovies() {
                             <img src="${movie.Poster}" alt="${movie.Title} Poster" onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=No+Image'">
                             <h4>${movie.Title}</h4>
                             <p>Released: ${movie.Year}</p>
+                            <button onclick="addToFavorites('${movie.imdbID}', '${movie.Title}', '${movie.Poster}')">Agregar a Favoritos</button>
                         `;
                         searchResultsContainer.appendChild(movieElement);
                     });
@@ -63,48 +64,57 @@ function searchMovies() {
     }
 }
 
-// Función para filtrar por género
-function filterMovies() {
-    const genre = document.getElementById('genreFilter').value;
-    const filterResultsContainer = document.getElementById('peliculasList');
+// Función para agregar a favoritos
+function addToFavorites(imdbID, title, poster) {
+    // Crear un objeto para la película
+    const movie = { imdbID, title, poster };
 
-    // Limpiar el contenedor de resultados
-    filterResultsContainer.innerHTML = '<p>Cargando...</p>'; // Indicador de carga
+    // Obtener la lista de favoritos actual desde localStorage (si existe)
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    const apiUrl = `https://www.omdbapi.com/?s=${encodeURIComponent(genre)}&apikey=${apiKey}`;
+    // Verificar si la película ya está en la lista de favoritos
+    if (!favorites.some(fav => fav.imdbID === imdbID)) {
+        favorites.push(movie); // Agregar la película a favoritos
+        localStorage.setItem('favorites', JSON.stringify(favorites)); // Guardar la lista actualizada
+        alert(`${title} ha sido agregado a tus favoritos!`);
+    } else {
+        alert(`${title} ya está en tus favoritos.`);
+    }
+}
 
-    console.log("URL de la API para filtro:", apiUrl); // Para depurar y ver la URL construida
+// Función para ver los favoritos
+function viewFavorites() {
+    const favoritesContainer = document.getElementById('favoritesList');
+    favoritesContainer.innerHTML = ''; // Limpiar contenedor de favoritos
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            console.log("Datos de la API con filtro:", data); // Ver la respuesta
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-            filterResultsContainer.innerHTML = ''; // Limpiar resultados anteriores
-
-            if (data.Response === "True") {
-                data.Search.forEach(movie => {
-                    const movieElement = document.createElement('div');
-                    movieElement.classList.add('movie');
-                    movieElement.innerHTML = `
-                        <img src="${movie.Poster}" alt="${movie.Title} Poster" onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=No+Image'">
-                        <h4>${movie.Title}</h4>
-                        <p>Released: ${movie.Year}</p>
-                    `;
-                    filterResultsContainer.appendChild(movieElement);
-                });
-            } else {
-                filterResultsContainer.innerHTML = '<p>No se encontraron resultados para este género.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Error al filtrar las películas:', error);
-            filterResultsContainer.innerHTML = '<p>Error al obtener los resultados.</p>';
+    if (favorites.length > 0) {
+        favorites.forEach(fav => {
+            const movieElement = document.createElement('div');
+            movieElement.classList.add('movie');
+            movieElement.innerHTML = `
+                <img src="${fav.poster}" alt="${fav.title} Poster">
+                <h4>${fav.title}</h4>
+                <button onclick="removeFromFavorites('${fav.imdbID}')">Eliminar de Favoritos</button>
+            `;
+            favoritesContainer.appendChild(movieElement);
         });
+    } else {
+        favoritesContainer.innerHTML = '<p>No tienes favoritos aún.</p>';
+    }
+}
+
+// Función para eliminar de favoritos
+function removeFromFavorites(imdbID) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites = favorites.filter(fav => fav.imdbID !== imdbID); // Eliminar la película por su imdbID
+    localStorage.setItem('favorites', JSON.stringify(favorites)); // Guardar la lista actualizada
+    viewFavorites(); // Actualizar la vista de favoritos
 }
 
 // Función de inicio (al cargar la página)
 window.onload = () => {
     openTab(event, 'list'); // Mostrar la pestaña de lista al cargar la página
+    viewFavorites(); // Mostrar favoritos al cargar la página
 };
-
