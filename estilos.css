@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('fondo-moviedc.jpg'); /* Cambia esta ruta por tu imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.contenedor {
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.descripcion {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.imagen-api {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+}
+
+.info-extra {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+}
