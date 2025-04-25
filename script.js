@@ -1,4 +1,3 @@
-// Definir la URL de la API y la clave
 const apiKey = 'df78b1d0';
 const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
@@ -16,25 +15,33 @@ function openTab(evt, tabName) {
 
 // Función para cargar películas desde la API
 async function loadMovies() {
-    const response = await fetch(`${apiUrl}&s=Marvel`);
-    const data = await response.json();
+    try {
+        const searchTerm = "Marvel"; // Cambiar por lo que desees buscar
+        const response = await fetch(`${apiUrl}&s=${searchTerm}`);
+        const data = await response.json();
 
-    if (data.Response === "True") {
-        const movieList = document.getElementById("movieList");
-        movieList.innerHTML = '';
-        data.Search.forEach(movie => {
-            const movieElement = document.createElement("div");
-            movieElement.classList.add("movie");
-            movieElement.innerHTML = `
-                <img src="${movie.Poster}" alt="${movie.Title}">
-                <h3>${movie.Title}</h3>
-                <p> Año: ${movie.Year}</p>
-                <button onclick="addToFavorites('${movie.imdbID}')">Agregar a Favoritos</button>
-            `;
-            movieList.appendChild(movieElement);
-        });
-    } else {
-        console.error("No se encontraron películas");
+        if (data.Response === "True") {
+            const movieList = document.getElementById("movieList");
+            movieList.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
+
+            // Iterar sobre las películas y mostrarlas
+            data.Search.forEach(movie => {
+                const movieElement = document.createElement("div");
+                movieElement.classList.add("movie");
+                movieElement.innerHTML = `
+                    <img src="${movie.Poster}" alt="${movie.Title}">
+                    <h3>${movie.Title}</h3>
+                    <p> Año: ${movie.Year}</p>
+                    <button onclick="addToFavorites('${movie.imdbID}')">Agregar a Favoritos</button>
+                `;
+                movieList.appendChild(movieElement);
+            });
+        } else {
+            alert("No se encontraron películas.");
+        }
+    } catch (error) {
+        console.error("Error al cargar las películas:", error);
+        alert("Hubo un error al cargar las películas.");
     }
 }
 
@@ -51,7 +58,8 @@ function addToFavorites(imdbID) {
 function loadFavorites() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const favoritesList = document.getElementById("favoritesList");
-    favoritesList.innerHTML = '';
+    favoritesList.innerHTML = ''; // Limpiar la lista de favoritos antes de cargar nuevas películas
+
     favorites.forEach(imdbID => {
         fetch(`${apiUrl}&i=${imdbID}`)
             .then(response => response.json())
@@ -75,4 +83,3 @@ document.getElementById("menu").addEventListener("click", loadMovies);
 
 // Cargar los favoritos al abrir la pestaña "Favoritos"
 document.getElementById("favorites").addEventListener("click", loadFavorites);
-
