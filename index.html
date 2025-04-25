@@ -3,63 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas</title>
+    <title>Películas Favoritas</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-    <!-- Navegación -->
-    <div class="tab">
-        <button class="tablink" onclick="openTab(event, 'list')">Lista</button>
+    <!-- Contenedor principal de pestañas -->
+    <div class="tabs">
+        <button class="tablink" onclick="openTab(event, 'list')">Lista de Películas</button>
         <button class="tablink" onclick="openTab(event, 'favorites')">Favoritos</button>
-        <button class="tablink" onclick="openTab(event, 'info')">Información</button>
-        <button class="tablink" onclick="openTab(event, 'filter')">Filtros</button>
-        <button class="tablink" onclick="openTab(event, 'menu')">Menú</button>
+        <button class="tablink" onclick="openTab(event, 'informative')">Pestaña Informativa</button>
         <button class="tablink" onclick="openTab(event, 'user')">Usuario</button>
     </div>
 
-    <!-- Contenido de las pestañas -->
+    <!-- Pestaña de Lista de Películas -->
     <div id="list" class="tabcontent">
+        <h2>Lista de Películas</h2>
         <input type="text" id="searchInput" placeholder="Buscar películas..." oninput="searchMovies()">
         <div id="searchResults"></div>
     </div>
 
+    <!-- Pestaña de Favoritos -->
     <div id="favorites" class="tabcontent">
-        <h2>Películas Favoritas</h2>
-        <div id="favoritosList"></div>
+        <h2>Mis Favoritos</h2>
+        <div id="favoritesList">
+            <!-- Las películas favoritas se agregarán aquí -->
+        </div>
     </div>
 
-    <div id="info" class="tabcontent">
+    <!-- Pestaña Informativa -->
+    <div id="informative" class="tabcontent">
         <h2>Información de la API</h2>
-        <p>OMDb API proporciona información sobre películas y series.</p>
+        <p>Título: OMDb API</p>
+        <p>Descripción: Una API que proporciona información sobre películas y series.</p>
+        <p>Versión de la App: V.1.0.0</p>
     </div>
 
-    <div id="filter" class="tabcontent">
-        <h2>Filtrar por Género</h2>
-        <select id="genreFilter" onchange="filterMovies()">
-            <option value="Action">Acción</option>
-            <option value="Comedy">Comedia</option>
-            <option value="Drama">Drama</option>
-        </select>
-        <div id="peliculasList"></div>
-    </div>
-
-    <div id="menu" class="tabcontent">
-        <h2>Menú</h2>
-        <p>Este es el menú de la aplicación.</p>
-    </div>
-
+    <!-- Pestaña de Usuario -->
     <div id="user" class="tabcontent">
         <h2>Formulario de Usuario</h2>
-        <form id="userForm">
+        <form>
             <label for="name">Nombre:</label>
-            <input type="text" id="name" required>
+            <input type="text" id="name" name="name" required>
             <label for="age">Edad:</label>
-            <input type="number" id="age" required>
-            <button type="submit">Enviar</button>
+            <input type="number" id="age" name="age" required>
+            <button type="submit">Guardar</button>
         </form>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
