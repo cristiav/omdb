@@ -1,14 +1,22 @@
-/* Estilos básicos para las pestañas */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('https://m.media-amazon.com/images/M/MV5BNWE5MGI3MDctMmU5Ni00YzI2LWEzMTQtZGIyZDA5MzQzNDBhXkEyXkFqcGc@._V1_SX300.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     margin: 0;
     padding: 0;
+    color: white;
+    backdrop-filter: brightness(0.8);
 }
 
+/* Fondo oscuro semitransparente para legibilidad */
 .tabcontent {
     display: none;
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    min-height: 100vh;
 }
 
 .tabcontent.active {
@@ -16,30 +24,37 @@ body {
 }
 
 .tablink {
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
-    background-color: #ddd;
+    background-color: rgba(255, 255, 255, 0.2);
     margin: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+.tablink:hover,
 .tablink.active {
-    background-color: #bbb;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
 }
 
 #movieList, #favoritesList {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 .movie {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    padding: 15px;
     text-align: center;
     width: 200px;
-    display: inline-block;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .movie img {
@@ -51,35 +66,36 @@ body {
 button {
     padding: 10px;
     margin-top: 10px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #ffc107;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #ffca2c;
 }
 
 input[type="text"], input[type="number"] {
     padding: 10px;
     margin-top: 5px;
     width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-input[type="submit"] {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
     border: none;
     border-radius: 5px;
 }
 
-input[type="submit"]:hover {
-    background-color: #218838;
+form {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
 }
 
+h2, p, label {
+    color: white;
+}
+
+img {
+    max-width: 100%;
+}
