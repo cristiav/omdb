@@ -53,7 +53,7 @@ body {
     font-size: 16px;
 }
 
-#searchResults {
+#movieList {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -101,20 +101,6 @@ body {
     width: 200px;
 }
 
-button[type="submit"] {
-    background-color: #ff7f50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-button[type="submit"]:hover {
-    background-color: #ff6347;
-}
-
 /* Estilos para el formulario de usuario */
 form {
     display: flex;
@@ -132,4 +118,3 @@ input[type="text"], input[type="number"] {
 input[type="text"]:focus, input[type="number"]:focus {
     outline-color: #ff7f50;
 }
-
