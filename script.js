@@ -1,47 +1,113 @@
+const apiKey = 'df78b1d0'; // Tu clave de la API
+
 function mostrarInfoAPI() {
-  const contenedor = document.getElementById("informacion");
+  setTimeout(() => {
+    document.getElementById('splashScreen').classList.add('hidden');
+  }, 3000); // El splash screen desaparece después de 3 segundos
+}
 
-  // Tu clave de la OMDb API
-  const apiKey = 'df78b1d0'; // Tu clave de API
+// Mostrar/Pase de pestañas
+function openTab(evt, tabName) {
+  let i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].classList.remove("active");
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].classList.remove("active");
+  }
+  document.getElementById(tabName).classList.add("active");
+  evt.currentTarget.classList.add("active");
+}
 
-  // Lista de títulos de películas
-  const peliculas = [
-    'Guardians of the Galaxy Vol. 2',
-    'Avengers: Endgame',
-    'The Matrix',
-    'Inception',
-    'Titanic'
-  ];
+// Buscar películas
+function searchMovies() {
+  const query = document.getElementById('searchInput').value;
+  fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
 
-  // Función para obtener información de cada película
-  peliculas.forEach(titulo => {
-    const url = `https://www.omdbapi.com/?t=${encodeURIComponent(titulo)}&apikey=${apiKey}`;
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if (data.Response === "True") {
-          contenedor.innerHTML += `
-            <div class="pelicula">
-              <img src="${data.Poster}" alt="${data.Title} Poster" class="imagen-api">
-              <div class="informacion-pelicula">
-                <p><strong>Título:</strong> ${data.Title}</p>
-                <p><strong>Género:</strong> ${data.Genre}</p>
-                <p><strong>Año:</strong> ${data.Year}</p>
-                <p><strong>Duración:</strong> ${data.Runtime}</p>
-                <p><strong>Director:</strong> ${data.Director}</p>
-                <p><strong>Sinopsis:</strong> ${data.Plot}</p>
-                <p><strong>Idioma:</strong> ${data.Language}</p>
-                <p><strong>Premios:</strong> ${data.Awards}</p>
-              </div>
-            </div>
+      if (data.Response === "True") {
+        data.Search.forEach(movie => {
+          const movieElement = document.createElement('div');
+          movieElement.classList.add('movie');
+          movieElement.innerHTML = `
+            <img src="${movie.Poster}" alt="${movie.Title} Poster">
+            <h4>${movie.Title}</h4>
+            <button onclick="saveFavorite({title: '${movie.Title}', poster: '${movie.Poster}'})">Guardar como Favorito</button>
           `;
-        } else {
-          contenedor.innerHTML += '<p>No se pudo obtener la información de una película.</p>';
-        }
-      })
-      .catch(error => {
-        contenedor.innerHTML += '<p>Error al cargar la información de la película.</p>';
-      });
+          resultsContainer.appendChild(movieElement);
+        });
+      }
+    });
+}
+
+// Guardar favoritos en almacenamiento local
+function saveFavorite(movie) {
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  favorites.push(movie);
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+  displayFavorites();
+}
+
+// Mostrar favoritos
+function displayFavorites() {
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  const favoritesContainer = document.getElementById('favoritosList');
+  favoritesContainer.innerHTML = '';
+
+  favorites.forEach(movie => {
+    const movieElement = document.createElement('div');
+    movieElement.classList.add('movie');
+    movieElement.innerHTML = `
+      <img src="${movie.poster}" alt="${movie.title} Poster">
+      <h4>${movie.title}</h4>
+      <button onclick="removeFavorite('${movie.title}')">Eliminar</button>
+    `;
+    favoritesContainer.appendChild(movieElement);
   });
 }
+
+// Eliminar favorito
+function removeFavorite(title) {
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  favorites = favorites.filter(movie => movie.title !== title);
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+  displayFavorites();
+}
+
+// Filtrar películas
+function filterMovies() {
+  const genre = document.getElementById('genreFilter').value;
+  const resultsContainer = document.getElementById('peliculasList');
+  resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+
+  fetch(`https://www.omdbapi.com/?s=*&genre=${genre}&apikey=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.Response === "True") {
+        data.Search.forEach(movie => {
+          const movieElement = document.createElement('div');
+          movieElement.classList.add('movie');
+          movieElement.innerHTML = `
+            <img src="${movie.Poster}" alt="${movie.Title} Poster">
+            <h4>${movie.Title}</h4>
+          `;
+          resultsContainer.appendChild(movieElement);
+        });
+      }
+    });
+}
+
+// Mostrar todas las películas en la pestaña de "Películas"
+document.getElementById('peliculasList').addEventListener('load', fetchMovies());
+
+function fetchMovies() {
+  fetch(`https://www.omdbapi.com/?s=Batman&apikey=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      const resultsContainer = document.getElementById('pel
+
