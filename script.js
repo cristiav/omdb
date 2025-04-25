@@ -1,10 +1,21 @@
-const apiKey = 'df78b1d0';
+const apiKey = 'df78b1d0';  // Clave API de OMDb
 const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
+// Función para abrir las pestañas
+function openTab(evt, tabName) {
+    const tabContents = document.querySelectorAll(".tabcontent");
+    const tabLinks = document.querySelectorAll(".tablink");
+
+    tabContents.forEach(content => content.classList.remove("active"));
+    tabLinks.forEach(link => link.classList.remove("active"));
+
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+
 // Función para cargar películas desde la API
-async function loadMovies() {
+async function loadMovies(searchTerm = 'Marvel') {
     try {
-        const searchTerm = "Marvel"; // Cambiar por lo que desees buscar
         const response = await fetch(`${apiUrl}&s=${searchTerm}`);
         const data = await response.json();
 
@@ -19,7 +30,7 @@ async function loadMovies() {
                 movieElement.innerHTML = `
                     <img src="${movie.Poster}" alt="${movie.Title}">
                     <h3>${movie.Title}</h3>
-                    <p> Año: ${movie.Year}</p>
+                    <p>Año: ${movie.Year}</p>
                     <button onclick="addToFavorites('${movie.imdbID}')">Agregar a Favoritos</button>
                 `;
                 movieList.appendChild(movieElement);
@@ -66,8 +77,11 @@ function loadFavorites() {
     });
 }
 
-// Cargar las películas al abrir la pestaña "Menu"
-document.getElementById("menu").addEventListener("click", loadMovies);
+// Llamar a la función de carga de películas al cargar la página
+loadMovies();
 
-// Cargar los favoritos al abrir la pestaña "Favoritos"
-document.getElementById("favorites").addEventListener("click", loadFavorites);
+// Cuando cambie la búsqueda, actualizar las películas mostradas
+function searchMovies() {
+    const searchTerm = document.getElementById("searchInput").value;
+    loadMovies(searchTerm);
+}
