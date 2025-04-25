@@ -1,127 +1,135 @@
+/* Estilos Generales */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: white;
-  margin: 0;
-  text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
 }
 
+/* Estilos de las pestañas */
 .tabs {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px 0;
 }
 
 .tablink {
-  padding: 10px;
-  margin: 5px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
+    background-color: #333;
+    color: white;
+    padding: 14px 20px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    flex: 1;
 }
 
 .tablink:hover {
-  background-color: #555;
+    background-color: #555;
 }
 
+.tablink.active {
+    background-color: #ff7f50;
+}
+
+/* Contenido de las pestañas */
 .tabcontent {
-  display: none;
+    display: none;
+    padding: 20px;
+    background-color: white;
 }
 
 .tabcontent.active {
-  display: block;
+    display: block;
 }
 
-.splash-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Búsqueda */
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
 }
 
-.splash-screen.hidden {
-  display: none;
+#searchResults {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-#searchResults, #peliculasList, #favoritosList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
+/* Película individual */
 .movie {
-  background-color: #333;
-  margin: 10px;
-  padding: 15px;
-  width: 200px;
-  text-align: left;
-  border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .movie img {
-  width: 100%;
-  border-radius: 5px;
+    width: 100%;
+    border-radius: 5px;
 }
 
-.movie h4 {
-  font-size: 1.1em;
-  color: #fff;
+.movie button {
+    margin-top: 10px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.footer-menu {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 10px;
+.movie button:hover {
+    background-color: #ff6347;
 }
 
-footer {
-  margin-top: 20px;
-  font-style: italic;
-  color: #ccc;
+/* Favoritos */
+#favoritesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-footer a {
-  color: #fff;
-  text-decoration: none;
+#favoritesList .movie {
+    width: 200px;
 }
 
+button[type="submit"] {
+    background-color: #ff7f50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #ff6347;
+}
+
+/* Estilos para el formulario de usuario */
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-form input[type="text"], form input[type="number"] {
-  padding: 8px;
-  margin: 10px;
-  width: 200px;
-  font-size: 16px;
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-form input[type="submit"] {
-  padding: 10px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
+input[type="text"]:focus, input[type="number"]:focus {
+    outline-color: #ff7f50;
 }
 
-form input[type="submit"]:hover {
-  background-color: #555;
-}
-
-#userMessage {
-  color: #2ecc71;
-  font-size: 18px;
-}
