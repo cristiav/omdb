@@ -21,6 +21,7 @@
     <button class="tablink" onclick="openTab(event, 'Favoritos')">Favoritos</button>
     <button class="tablink" onclick="openTab(event, 'Peliculas')">Películas</button>
     <button class="tablink" onclick="openTab(event, 'Filtro')">Filtro</button>
+    <button class="tablink" onclick="openTab(event, 'Usuario')">Usuario</button>
     <button class="tablink" onclick="openTab(event, 'Info')">Información</button>
   </div>
 
@@ -57,6 +58,18 @@
     </select>
   </div>
 
+  <div id="Usuario" class="tabcontent">
+    <h3>Formulario de Usuario</h3>
+    <form id="userForm" onsubmit="saveUserData(event)">
+      <label for="username">Nombre:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="age">Edad:</label>
+      <input type="number" id="age" name="age" required><br><br>
+      <input type="submit" value="Guardar">
+    </form>
+    <p id="userMessage"></p>
+  </div>
+
   <div id="Info" class="tabcontent">
     <h3>Información</h3>
     <p>Esta aplicación usa la OMDb API para obtener detalles de películas y mostrarlas a los usuarios.</p>
@@ -69,7 +82,7 @@
     <button onclick="location.href='#Inicio'">Inicio</button>
     <button onclick="location.href='#Buscar'">Buscar</button>
     <button onclick="location.href='#Favoritos'">Favoritos</button>
-    <button onclick="location.href='#Ajustes'">Ajustes</button>
+    <button onclick="location.href='#Usuario'">Usuario</button>
   </div>
 
   <footer>
@@ -79,4 +92,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
