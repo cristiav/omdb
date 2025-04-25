@@ -1,60 +1,92 @@
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background-image: url('fondo-moviedc.jpg'); /* Cambia esta ruta por tu imagen de fondo */
-  background-size: cover;
-  background-position: center;
+  background-color: #f4f4f4;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tablink {
+  padding: 10px;
+  margin: 5px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.tablink:hover {
+  background-color: #555;
+}
+
+.tabcontent {
+  display: none;
+}
+
+.tabcontent.active {
+  display: block;
+}
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-screen.hidden {
+  display: none;
+}
+
+#searchResults, #peliculasList, #favoritosList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie {
+  background-color: #333;
+  margin: 10px;
+  padding: 15px;
+  width: 200px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.movie img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.movie h4 {
+  font-size: 1.1em;
+  color: #fff;
+}
+
+.footer-menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
   color: white;
   text-align: center;
-}
-
-.contenedor {
-  max-width: 1200px;
-  margin: 50px auto;
-  background-color: rgba(0, 0, 0, 0.75);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-}
-
-h1 {
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-
-.descripcion {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 1.1em;
-}
-
-.pelicula {
-  display: inline-block;
-  width: 200px;
-  margin: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #000;
-  text-align: left;
-}
-
-.imagen-api {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.informacion-pelicula {
-  margin-top: 10px;
-  font-size: 0.9em;
+  padding: 10px;
 }
 
 footer {
-  margin-top: 30px;
+  margin-top: 20px;
   font-style: italic;
   color: #ccc;
 }
@@ -63,3 +95,4 @@ footer a {
   color: #fff;
   text-decoration: none;
 }
+
