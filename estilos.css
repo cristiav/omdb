@@ -1,120 +1,35 @@
-/* Estilos Generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-
-/* Estilos de las pestañas */
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px 0;
-}
-
-.tablink {
-    background-color: #333;
-    color: white;
-    padding: 14px 20px;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    flex: 1;
-}
-
-.tablink:hover {
-    background-color: #555;
-}
-
-.tablink.active {
-    background-color: #ff7f50;
-}
-
-/* Contenido de las pestañas */
-.tabcontent {
-    display: none;
-    padding: 20px;
-    background-color: white;
-}
-
-.tabcontent.active {
-    display: block;
-}
-
-/* Búsqueda */
-#searchInput {
-    width: 100%;
+/* Agrega aquí tu estilo según lo necesites */
+.movie {
+    border: 1px solid #ddd;
     padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+}
+
+.movie img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 #movieList {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
 }
 
-/* Película individual */
-.movie {
-    width: 200px;
-    text-align: center;
-    background-color: #fff;
+button {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.movie img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.movie button {
     margin-top: 10px;
-    background-color: #ff7f50;
+    background-color: #007BFF;
     color: white;
     border: none;
-    padding: 8px;
-    width: 100%;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 5px;
 }
 
-.movie button:hover {
-    background-color: #ff6347;
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Favoritos */
-#favoritesList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-#favoritesList .movie {
-    width: 200px;
-}
-
-/* Estilos para el formulario de usuario */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input[type="text"], input[type="number"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-input[type="text"]:focus, input[type="number"]:focus {
-    outline-color: #ff7f50;
-}
