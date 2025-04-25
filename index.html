@@ -10,17 +10,17 @@
 
     <!-- Contenedor principal de pestañas -->
     <div class="tabs">
-        <button class="tablink" onclick="openTab(event, 'list')">Lista de Películas</button>
+        <button class="tablink" onclick="openTab(event, 'menu')">Menu</button>
         <button class="tablink" onclick="openTab(event, 'favorites')">Favoritos</button>
         <button class="tablink" onclick="openTab(event, 'informative')">Pestaña Informativa</button>
         <button class="tablink" onclick="openTab(event, 'user')">Usuario</button>
     </div>
 
-    <!-- Pestaña de Lista de Películas -->
-    <div id="list" class="tabcontent">
-        <h2>Lista de Películas</h2>
+    <!-- Pestaña de Menu (todas las películas) -->
+    <div id="menu" class="tabcontent">
+        <h2>Películas Disponibles</h2>
         <input type="text" id="searchInput" placeholder="Buscar películas..." oninput="searchMovies()">
-        <div id="searchResults"></div>
+        <div id="movieList"></div>
     </div>
 
     <!-- Pestaña de Favoritos -->
