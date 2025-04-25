@@ -3,31 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas</title>
+    <title>Películas - OMDb API</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
+    <!-- Pestañas de navegación -->
     <div class="tabs">
         <button class="tablink" onclick="openTab(event, 'menu')">Menu</button>
         <button class="tablink" onclick="openTab(event, 'favorites')">Favoritos</button>
         <button class="tablink" onclick="openTab(event, 'informative')">Pestaña Informativa</button>
+        <button class="tablink" onclick="openTab(event, 'user')">Usuario</button>
     </div>
 
+    <!-- Menu principal -->
     <div id="menu" class="tabcontent">
         <h2>Películas Disponibles</h2>
         <input type="text" id="searchInput" placeholder="Buscar películas..." oninput="searchMovies()">
         <div id="movieList"></div>
     </div>
 
+    <!-- Favoritos -->
     <div id="favorites" class="tabcontent">
         <h2>Favoritos</h2>
         <div id="favoritesList"></div>
     </div>
 
+    <!-- Pestaña informativa -->
     <div id="informative" class="tabcontent">
-        <h2>Pestaña Informativa</h2>
-        <p>Información sobre la API y su uso.</p>
+        <h2>Información de la API</h2>
+        <p><strong>API utilizada:</strong> OMDb API</p>
+        <p><strong>Descripción:</strong> OMDb API proporciona acceso a información sobre películas, series y programas de televisión. Permite obtener datos como títulos, imágenes, directores, reparto, y mucho más.</p>
+        <p><strong>Versión de la app:</strong> V.1.0.0</p>
+        <p><strong>Usuario de GitHub:</strong> tuusuario</p>
+        <p>Imagen representativa de la API:</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/OMDb_API_Logo.svg" alt="OMDb API" width="200">
+    </div>
+
+    <!-- Formulario de usuario -->
+    <div id="user" class="tabcontent">
+        <h2>Formulario de Usuario</h2>
+        <form>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" placeholder="Ingresa tu nombre"><br><br>
+            <label for="age">Edad:</label>
+            <input type="number" id="age" placeholder="Ingresa tu edad"><br><br>
+            <button type="submit">Enviar</button>
+        </form>
     </div>
 
     <script src="script.js"></script>
