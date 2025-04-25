@@ -1,6 +1,14 @@
 /* Estilos básicos para las pestañas */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
 .tabcontent {
     display: none;
+    padding: 20px;
 }
 
 .tabcontent.active {
@@ -18,6 +26,11 @@
     background-color: #bbb;
 }
 
+#movieList, #favoritesList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .movie {
     border: 1px solid #ddd;
     padding: 10px;
@@ -25,6 +38,8 @@
     text-align: center;
     width: 200px;
     display: inline-block;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .movie img {
@@ -47,12 +62,24 @@ button:hover {
     background-color: #0056b3;
 }
 
-#movieList {
-    display: flex;
-    flex-wrap: wrap;
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-#favoritesList {
-    display: flex;
-    flex-wrap: wrap;
+input[type="submit"] {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
