@@ -1,15 +1,16 @@
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
     background-image: url('https://m.media-amazon.com/images/M/MV5BNWE5MGI3MDctMmU5Ni00YzI2LWEzMTQtZGIyZDA5MzQzNDBhXkEyXkFqcGc@._V1_SX300.jpg');
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
-    margin: 0;
-    padding: 0;
     color: white;
-    backdrop-filter: brightness(0.8);
 }
+
 
 /* Fondo oscuro semitransparente para legibilidad */
 .tabcontent {
