@@ -5,27 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>OMDb API - Pestaña Informativa</title>
   <link rel="stylesheet" href="estilos.css">
+  <link rel="icon" href="icono.ico" type="image/x-icon"> <!-- Ícono personalizado -->
 </head>
 <body onload="mostrarInfoAPI()">
 
-  <div id="contenedor" class="contenedor">
-    <h1>OMDb API - Películas</h1>
-
-    <div class="descripcion">
-      <h2>Descripción de la API</h2>
-      <p>
-        La OMDb API (Open Movie Database) proporciona acceso a una gran base de datos sobre películas y series de televisión. Este proyecto muestra información sobre varias películas utilizando la API.
-      </p>
-    </div>
-
-    <div id="informacion"></div>
-
-    <footer>
-      <p>Nombre del Estudiante: Tu Nombre</p>
-      <p>GitHub: <a href="https://github.com/tu_usuario" target="_blank">tu_usuario</a></p>
-      <p>Versión de la app: V.1.0.0</p>
-    </footer>
+  <!-- Splash Screen -->
+  <div id="splashScreen" class="splash-screen">
+    <h1>Bienvenido a la app</h1>
   </div>
+
+  <!-- Menu de pestañas -->
+  <div class="tabs">
+    <button class="tablink" onclick="openTab(event, 'Inicio')">Inicio</button>
+    <button class="tablink" onclick="openTab(event, 'Buscar')">Buscar</button>
+    <button class="tablink" onclick="openTab(event, 'Favoritos')">Favoritos</button>
+    <button class="tablink" onclick="openTab(event, 'Peliculas')">Películas</button>
+    <button class="tablink" onclick="openTab(event, 'Filtro')">Filtro</button>
+    <button class="tablink" onclick="openTab(event, 'Info')">Información</button>
+  </div>
+
+  <!-- Pestañas -->
+  <div id="Inicio" class="tabcontent">
+    <h3>Inicio</h3>
+    <p>Bienvenido a la aplicación donde podrás ver información de películas utilizando la OMDb API.</p>
+  </div>
+
+  <div id="Buscar" class="tabcontent">
+    <h3>Buscar Películas</h3>
+    <input type="text" id="searchInput" placeholder="Buscar película..." onkeyup="searchMovies()">
+    <div id="searchResults"></div>
+  </div>
+
+  <div id="Favoritos" class="tabcontent">
+    <h3>Favoritos</h3>
+    <div id="favoritosList"></div>
+  </div>
+
+  <div id="Peliculas" class="tabcontent">
+    <h3>Películas</h3>
+    <div id="peliculasList"></div>
+  </div>
+
+  <div id="Filtro" class="tabcontent">
+    <h3>Filtrar Películas</h3>
+    <label for="genreFilter">Género:</label>
+    <select id="genreFilter" onchange="filterMovies()">
+      <option value="All">Todos</option>
+      <option value="Action">Acción</option>
+      <option value="Comedy">Comedia</option>
+      <option value="Drama">Drama</option>
+    </select>
+  </div>
+
+  <div id="Info" class="tabcontent">
+    <h3>Información</h3>
+    <p>Esta aplicación usa la OMDb API para obtener detalles de películas y mostrarlas a los usuarios.</p>
+    <p>GitHub: <a href="https://github.com/tu_usuario" target="_blank">tu_usuario</a></p>
+    <p>Versión de la app: V.1.0.0</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-menu">
+    <button onclick="location.href='#Inicio'">Inicio</button>
+    <button onclick="location.href='#Buscar'">Buscar</button>
+    <button onclick="location.href='#Favoritos'">Favoritos</button>
+    <button onclick="location.href='#Ajustes'">Ajustes</button>
+  </div>
+
+  <footer>
+    <p>Desarrollado por: Tu Nombre</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
