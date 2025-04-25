@@ -1,18 +1,6 @@
 const apiKey = 'df78b1d0';
 const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
-// Función para abrir las pestañas
-function openTab(evt, tabName) {
-    const tabContents = document.querySelectorAll(".tabcontent");
-    const tabLinks = document.querySelectorAll(".tablink");
-
-    tabContents.forEach(content => content.classList.remove("active"));
-    tabLinks.forEach(link => link.classList.remove("active"));
-
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.classList.add("active");
-}
-
 // Función para cargar películas desde la API
 async function loadMovies() {
     try {
