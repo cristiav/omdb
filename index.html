@@ -1,94 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OMDb API - Pestaña Informativa</title>
-  <link rel="stylesheet" href="estilos.css">
-  <link rel="icon" href="icono.ico" type="image/x-icon"> <!-- Ícono personalizado -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
-<body onload="mostrarInfoAPI()">
+<body>
 
-  <!-- Splash Screen -->
-  <div id="splashScreen" class="splash-screen">
-    <h1>Bienvenido a la app</h1>
-  </div>
+    <!-- Navegación -->
+    <div class="tab">
+        <button class="tablink" onclick="openTab(event, 'list')">Lista</button>
+        <button class="tablink" onclick="openTab(event, 'favorites')">Favoritos</button>
+        <button class="tablink" onclick="openTab(event, 'info')">Información</button>
+        <button class="tablink" onclick="openTab(event, 'filter')">Filtros</button>
+        <button class="tablink" onclick="openTab(event, 'menu')">Menú</button>
+        <button class="tablink" onclick="openTab(event, 'user')">Usuario</button>
+    </div>
 
-  <!-- Menu de pestañas -->
-  <div class="tabs">
-    <button class="tablink" onclick="openTab(event, 'Inicio')">Inicio</button>
-    <button class="tablink" onclick="openTab(event, 'Buscar')">Buscar</button>
-    <button class="tablink" onclick="openTab(event, 'Favoritos')">Favoritos</button>
-    <button class="tablink" onclick="openTab(event, 'Peliculas')">Películas</button>
-    <button class="tablink" onclick="openTab(event, 'Filtro')">Filtro</button>
-    <button class="tablink" onclick="openTab(event, 'Usuario')">Usuario</button>
-    <button class="tablink" onclick="openTab(event, 'Info')">Información</button>
-  </div>
+    <!-- Contenido de las pestañas -->
+    <div id="list" class="tabcontent">
+        <input type="text" id="searchInput" placeholder="Buscar películas..." oninput="searchMovies()">
+        <div id="searchResults"></div>
+    </div>
 
-  <!-- Pestañas -->
-  <div id="Inicio" class="tabcontent">
-    <h3>Inicio</h3>
-    <p>Bienvenido a la aplicación donde podrás ver información de películas utilizando la OMDb API.</p>
-  </div>
+    <div id="favorites" class="tabcontent">
+        <h2>Películas Favoritas</h2>
+        <div id="favoritosList"></div>
+    </div>
 
-  <div id="Buscar" class="tabcontent">
-    <h3>Buscar Películas</h3>
-    <input type="text" id="searchInput" placeholder="Buscar película..." onkeyup="searchMovies()">
-    <div id="searchResults"></div>
-  </div>
+    <div id="info" class="tabcontent">
+        <h2>Información de la API</h2>
+        <p>OMDb API proporciona información sobre películas y series.</p>
+    </div>
 
-  <div id="Favoritos" class="tabcontent">
-    <h3>Favoritos</h3>
-    <div id="favoritosList"></div>
-  </div>
+    <div id="filter" class="tabcontent">
+        <h2>Filtrar por Género</h2>
+        <select id="genreFilter" onchange="filterMovies()">
+            <option value="Action">Acción</option>
+            <option value="Comedy">Comedia</option>
+            <option value="Drama">Drama</option>
+        </select>
+        <div id="peliculasList"></div>
+    </div>
 
-  <div id="Peliculas" class="tabcontent">
-    <h3>Películas</h3>
-    <div id="peliculasList"></div>
-  </div>
+    <div id="menu" class="tabcontent">
+        <h2>Menú</h2>
+        <p>Este es el menú de la aplicación.</p>
+    </div>
 
-  <div id="Filtro" class="tabcontent">
-    <h3>Filtrar Películas</h3>
-    <label for="genreFilter">Género:</label>
-    <select id="genreFilter" onchange="filterMovies()">
-      <option value="All">Todos</option>
-      <option value="Action">Acción</option>
-      <option value="Comedy">Comedia</option>
-      <option value="Drama">Drama</option>
-    </select>
-  </div>
+    <div id="user" class="tabcontent">
+        <h2>Formulario de Usuario</h2>
+        <form id="userForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+            <label for="age">Edad:</label>
+            <input type="number" id="age" required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
 
-  <div id="Usuario" class="tabcontent">
-    <h3>Formulario de Usuario</h3>
-    <form id="userForm" onsubmit="saveUserData(event)">
-      <label for="username">Nombre:</label>
-      <input type="text" id="username" name="username" required><br><br>
-      <label for="age">Edad:</label>
-      <input type="number" id="age" name="age" required><br><br>
-      <input type="submit" value="Guardar">
-    </form>
-    <p id="userMessage"></p>
-  </div>
-
-  <div id="Info" class="tabcontent">
-    <h3>Información</h3>
-    <p>Esta aplicación usa la OMDb API para obtener detalles de películas y mostrarlas a los usuarios.</p>
-    <p>GitHub: <a href="https://github.com/tu_usuario" target="_blank">tu_usuario</a></p>
-    <p>Versión de la app: V.1.0.0</p>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer-menu">
-    <button onclick="location.href='#Inicio'">Inicio</button>
-    <button onclick="location.href='#Buscar'">Buscar</button>
-    <button onclick="location.href='#Favoritos'">Favoritos</button>
-    <button onclick="location.href='#Usuario'">Usuario</button>
-  </div>
-
-  <footer>
-    <p>Desarrollado por: Tu Nombre</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
