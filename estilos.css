@@ -1,4 +1,23 @@
-/* Agrega aquí tu estilo según lo necesites */
+/* Estilos básicos para las pestañas */
+.tabcontent {
+    display: none;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+.tablink {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #ddd;
+    margin: 5px;
+}
+
+.tablink.active {
+    background-color: #bbb;
+}
+
 .movie {
     border: 1px solid #ddd;
     padding: 10px;
@@ -14,11 +33,6 @@
     border-radius: 10px;
 }
 
-#movieList {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 button {
     padding: 10px;
     margin-top: 10px;
@@ -31,5 +45,15 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+#movieList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#favoritesList {
+    display: flex;
+    flex-wrap: wrap;
 }
 
