@@ -96,3 +96,32 @@ footer a {
   text-decoration: none;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form input[type="text"], form input[type="number"] {
+  padding: 8px;
+  margin: 10px;
+  width: 200px;
+  font-size: 16px;
+}
+
+form input[type="submit"] {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #555;
+}
+
+#userMessage {
+  color: #2ecc71;
+  font-size: 18px;
+}
