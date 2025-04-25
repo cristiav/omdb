@@ -24,25 +24,33 @@ function openTab(evt, tabName) {
 // Buscar películas
 function searchMovies() {
   const query = document.getElementById('searchInput').value;
-  fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-      const resultsContainer = document.getElementById('searchResults');
-      resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+  
+  if (query.length > 2) { // Solo buscar si el texto tiene más de 2 caracteres
+    fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${apiKey}`)
+      .then(response => response.json())
+      .then(data => {
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
 
-      if (data.Response === "True") {
-        data.Search.forEach(movie => {
-          const movieElement = document.createElement('div');
-          movieElement.classList.add('movie');
-          movieElement.innerHTML = `
-            <img src="${movie.Poster}" alt="${movie.Title} Poster">
-            <h4>${movie.Title}</h4>
-            <button onclick="saveFavorite({title: '${movie.Title}', poster: '${movie.Poster}'})">Guardar como Favorito</button>
-          `;
-          resultsContainer.appendChild(movieElement);
-        });
-      }
-    });
+        if (data.Response === "True") {
+          data.Search.forEach(movie => {
+            const movieElement = document.createElement('div');
+            movieElement.classList.add('movie');
+            movieElement.innerHTML = `
+              <img src="${movie.Poster}" alt="${movie.Title} Poster">
+              <h4>${movie.Title}</h4>
+              <button onclick="saveFavorite({title: '${movie.Title}', poster: '${movie.Poster}'})">Guardar como Favorito</button>
+            `;
+            resultsContainer.appendChild(movieElement);
+          });
+        } else {
+          resultsContainer.innerHTML = `<p>No se encontraron películas.</p>`;
+        }
+      })
+      .catch(error => {
+        console.error("Error al obtener datos de la API:", error);
+      });
+  }
 }
 
 // Guardar favoritos en almacenamiento local
@@ -79,13 +87,13 @@ function removeFavorite(title) {
   displayFavorites();
 }
 
-// Filtrar películas
+// Filtrar películas por género
 function filterMovies() {
   const genre = document.getElementById('genreFilter').value;
   const resultsContainer = document.getElementById('peliculasList');
   resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
 
-  fetch(`https://www.omdbapi.com/?s=*&genre=${genre}&apikey=${apiKey}`)
+  fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(genre)}&apikey=${apiKey}`)
     .then(response => response.json())
     .then(data => {
       if (data.Response === "True") {
@@ -98,16 +106,43 @@ function filterMovies() {
           `;
           resultsContainer.appendChild(movieElement);
         });
+      } else {
+        resultsContainer.innerHTML = `<p>No se encontraron películas con ese género.</p>`;
       }
+    })
+    .catch(error => {
+      console.error("Error al obtener datos de la API:", error);
     });
 }
 
-// Mostrar todas las películas en la pestaña de "Películas"
-document.getElementById('peliculasList').addEventListener('load', fetchMovies());
-
+// Mostrar todas las películas (por ejemplo, "Batman")
 function fetchMovies() {
   fetch(`https://www.omdbapi.com/?s=Batman&apikey=${apiKey}`)
     .then(response => response.json())
     .then(data => {
-      const resultsContainer = document.getElementById('pel
+      const resultsContainer = document.getElementById('peliculasList');
+      resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+
+      if (data.Response === "True") {
+        data.Search.forEach(movie => {
+          const movieElement = document.createElement('div');
+          movieElement.classList.add('movie');
+          movieElement.innerHTML = `
+            <img src="${movie.Poster}" alt="${movie.Title} Poster">
+            <h4>${movie.Title}</h4>
+          `;
+          resultsContainer.appendChild(movieElement);
+        });
+      }
+    })
+    .catch(error => {
+      console.error("Error al obtener datos de la API:", error);
+    });
+}
+
+// Cargar películas al iniciar la app
+window.onload = () => {
+  fetchMovies();
+};
+
 
