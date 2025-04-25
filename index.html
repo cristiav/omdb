@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Favoritos</title>
-  <link rel="stylesheet" href="estilos.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <header>
-    <h1>Mis Favoritos</h1>
-  </header>
 
-  <main id="favoritosContainer"></main>
+    <div class="tabs">
+        <button class="tablink" onclick="openTab(event, 'menu')">Menu</button>
+        <button class="tablink" onclick="openTab(event, 'favorites')">Favoritos</button>
+        <button class="tablink" onclick="openTab(event, 'informative')">Pestaña Informativa</button>
+    </div>
 
-  <footer>
-    <nav>
-      <button onclick="location.href='index.html'">Inicio</button>
-      <button onclick="location.href='favoritos.html'">Favoritos</button>
-      <button onclick="location.href='info.html'">Info</button>
-      <button>Perfil</button>
-    </nav>
-  </footer>
+    <div id="menu" class="tabcontent">
+        <h2>Películas Disponibles</h2>
+        <input type="text" id="searchInput" placeholder="Buscar películas..." oninput="searchMovies()">
+        <div id="movieList"></div>
+    </div>
 
-  <script src="favoritos.js"></script>
+    <div id="favorites" class="tabcontent">
+        <h2>Favoritos</h2>
+        <div id="favoritesList"></div>
+    </div>
+
+    <div id="informative" class="tabcontent">
+        <h2>Pestaña Informativa</h2>
+        <p>Información sobre la API y su uso.</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
